@@ -104,7 +104,7 @@ Acesse em: [http://localhost:3000](http://localhost:3000)
 
 ## 💻 Funcionalidades Principais
 
-* Página inicial com simulação de crédito
+* Página inicial
 
 ## WEB:
 [🔗 Acesse a Landing Page](http://localhost:3000/)
