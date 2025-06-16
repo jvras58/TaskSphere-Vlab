@@ -13,7 +13,9 @@ export class UserService {
     this.fastify = fastify;
   }
 
-  async checkPermission(userId: string, action: string, subject: string) {
+  async checkPermission(userId: string, action: string, subject: string, targetUserId?: string) {
+    if (targetUserId && userId === targetUserId) return;
+
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
       include: { role: { include: { permission: true } } },
