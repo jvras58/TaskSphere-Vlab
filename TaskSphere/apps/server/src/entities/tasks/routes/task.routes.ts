@@ -105,7 +105,7 @@ export default async function taskRoutes(fastify: FastifyInstance) {
       dueDate?: string;
       imageUrl?: string;
     };
-  }>('/tasks/:id', {
+  }>('/:id', {
     schema: {
       tags: ['Task'],
       summary: 'Atualiza uma tarefa existente',
@@ -151,7 +151,7 @@ export default async function taskRoutes(fastify: FastifyInstance) {
   // Deletar tarefa
   fastify.delete<{
     Params: { id: string };
-  }>('/tasks/:id', {
+  }>('/:id', {
     schema: {
       tags: ['Task'],
       summary: 'Remove uma tarefa',
