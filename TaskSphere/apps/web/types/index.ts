@@ -7,6 +7,16 @@ export interface User {
   image?: string;
 }
 
+export type Project = {
+  id: string;
+  name: string;
+  description?: string;
+  startDate: string;
+  endDate: string;
+  creatorId: string;
+  collaborators: User[];
+};
+
 
 export interface AuthResponse {
   user: User;

@@ -98,7 +98,12 @@ export default async function projectRoutes(fastify: FastifyInstance) {
         },
       },
       response: {
-        204: { type: 'null' },
+        200: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+        },
       },
       security: [{ bearerAuth: [] }],
     },

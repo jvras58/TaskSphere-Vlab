@@ -11,6 +11,7 @@ import { ContentLayout } from "@/components/content-layout";
 import Link from "next/link";
 import { Metadata } from "next";
 import { CreateEditProjectDialog } from "@/modules/project/components/create-update-project-dialog";
+import { ProjectList } from "@/modules/project/components/project-list";
 
 
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ export default async function ProjectPage() {
         <CreateEditProjectDialog />
       </div>
       <div className="mx-10 mt-10 mb-10 space-y-28">
-        {/* <ProjectDataTable /> */}
+        <ProjectList/>
       </div>
     </ContentLayout>
   );

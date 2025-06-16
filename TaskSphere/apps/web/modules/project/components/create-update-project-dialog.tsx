@@ -15,7 +15,7 @@ import { ProjectFormValues, projectSchema } from '../schemas/project-schema';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProjectFormFields } from './project-form-fields';
-
+import { useQueryClient } from '@tanstack/react-query';
 import { useSessionStore } from '@/modules/auth/stores/session-store';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
@@ -41,6 +41,7 @@ export function CreateEditProjectDialog({
   const [internalOpen, setInternalOpen] = useState(false);
   const open = controlledOpen ?? internalOpen;
   const setOpen = controlledSetOpen ?? setInternalOpen;
+  const queryClient = useQueryClient();
 
   const { session } = useSessionStore();
 
@@ -74,6 +75,7 @@ export function CreateEditProjectDialog({
     },
     onSuccess: () => {
       toast.success(`Projeto ${mode === 'edit' ? 'atualizado' : 'criado'} com sucesso!`);
+      queryClient.invalidateQueries({ queryKey: ['projects'] });
       setOpen(false);
       onSuccess?.();
     },
@@ -86,7 +88,6 @@ export function CreateEditProjectDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {/* Botão padrão para modo create */}
       {mode === 'create' && (
         <DialogTrigger asChild>
           <Button>
