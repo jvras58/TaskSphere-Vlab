@@ -6,7 +6,10 @@ export default async function Layout({ children }: { children: React.ReactNode }
   const session = await getSession();
   return (
     <SessionProvider session={session}>
-      {children}
+      <div className="flex min-h-screen">
+        <DashboardSidebar />
+        <main className="flex-1">{children}</main>
+      </div>
     </SessionProvider>
   );
 }
