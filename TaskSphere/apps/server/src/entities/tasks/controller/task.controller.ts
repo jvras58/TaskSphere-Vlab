@@ -65,4 +65,22 @@ export class TaskController {
     await this.taskService.deleteTask(task.id);
     reply.status(204).send();
   }
+
+  async assign(request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
+    const taskId = request.params.id;
+    const userId = (request.user as any).sub?.userId;
+
+    const task = await this.taskService.getTaskById(taskId);
+    if (!task) return reply.status(404).send({ message: 'Tarefa não encontrada' });
+
+    const isAllowed = await this.taskService.isUserInProject(task.projectId, userId);
+    if (!isAllowed) return reply.status(403).send({ message: 'Apenas colaboradores podem assumir tarefas' });
+
+    if (task.assigneeId === userId) {
+      return reply.status(400).send({ message: 'Você já assumiu essa tarefa' });
+    }
+
+    await this.taskService.assignTask(taskId, userId);
+    reply.send({ message: 'Tarefa assumida com sucesso' });
+}
 }

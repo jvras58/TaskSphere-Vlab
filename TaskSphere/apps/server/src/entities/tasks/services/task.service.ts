@@ -69,4 +69,12 @@ export class TaskService {
       where: { id },
     });
   }
+  
+  async assignTask(taskId: string, userId: string) {
+  return this.prisma.task.update({
+    where: { id: taskId },
+    data: { assigneeId: userId },
+  });
+}
+
 }

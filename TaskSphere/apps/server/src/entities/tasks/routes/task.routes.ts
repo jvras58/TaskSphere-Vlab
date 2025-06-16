@@ -171,5 +171,35 @@ export default async function taskRoutes(fastify: FastifyInstance) {
     },
     preHandler: fastify.auth([fastify.verifyJWT]),
     handler: controller.delete.bind(controller),
+  })
+
+  // Colaborador assume a execução de uma tarefa
+  fastify.patch<{
+    Params: { id: string };
+  }>('/:id/assign', {
+    schema: {
+      tags: ['Task'],
+      summary: 'Colaborador assume a execução de uma tarefa',
+      params: {
+        type: 'object',
+        properties: {
+          id: { type: 'string', description: 'ID da tarefa' },
+        },
+        required: ['id'],
+      },
+      response: {
+        200: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+        },
+      },
+      security: [{ bearerAuth: [] }],
+    },
+    preHandler: fastify.auth([fastify.verifyJWT]),
+    handler: controller.assign.bind(controller),
   });
 }
+
+
