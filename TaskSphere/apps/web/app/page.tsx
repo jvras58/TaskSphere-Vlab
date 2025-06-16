@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import TabsSection from "@/components/TabsSection"
 import { Button } from "@/components/ui/button"
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
 
       <main className="flex-1 p-4 md:p-6 bg-muted/30">
         <div className="grid gap-6">

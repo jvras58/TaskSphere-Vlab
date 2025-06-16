@@ -1,18 +1,35 @@
-import Link from "next/link";
+"use client";
+import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
-import { Button } from "@/components/ui/button";
+import { SheetMenu } from "./sheet-menu";
+import { UserNav } from "./user-nav";
+import { useSession } from "@/modules/auth/utils/sync-session";
 
-export default function Navbar() {
+interface NavbarProps {
+  title: string;
+}
+
+export function Navbar({ title }: NavbarProps) {
+  const path = usePathname();
+  const { session } = useSession();
+
   return (
-    <nav className="ml-auto flex items-center gap-4 md:gap-6">
-      <Link href="/dashboard" className="text-sm font-medium text-foreground hover:text-primary">
-        Dashboard
-      </Link>
-      <Link href="#" className="text-sm font-medium text-foreground hover:text-primary">
-        Relatórios
-      </Link>
-      <Button className="rounded-full bg-primary hover-primary">Nova Projeto</Button>
-      <ModeToggle />
-    </nav>
+    <header className="sticky top-0 z-10 w-full bg-background/95 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:shadow-secondary">
+      <div className="mx-4 sm:mx-8 flex h-14 items-center">
+        <div className="flex items-center space-x-4 lg:space-x-0">
+          <SheetMenu />
+          <h1 className="font-bold hidden md:block text-nowrap">{title}</h1>
+        </div>
+
+        <div
+          className={`flex items-center space-x-2 justify-end ${
+            path !== "/produtos" ? "w-full" : ""
+          }`}
+        >
+          <ModeToggle />
+          {session && <UserNav />}
+        </div>
+      </div>
+    </header>
   );
 }
