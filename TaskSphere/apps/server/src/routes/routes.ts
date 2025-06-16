@@ -1,12 +1,14 @@
 import { FastifyInstance } from 'fastify';
 import authRoutes from '../entities/auth/routes/auth.routes';
 import userRoutes from '../entities/user/routes/user.routes';
+import projectRoutes from '../entities/project/routes/project.routes';
 
 
 export async function registerRoutes(app: FastifyInstance) {
   // Registering routes
   await app.register(authRoutes, { prefix: '/api/auth' });
   await app.register(userRoutes, { prefix: '/api/user' });
+  await app.register(projectRoutes, { prefix: '/api/projects' });
 
   // health check route
   app.get('/', {
