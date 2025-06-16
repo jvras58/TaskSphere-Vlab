@@ -1,21 +1,46 @@
-import { getSession } from '@/lib/session';
-import type { Metadata } from 'next';
+import React from "react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+// import { ContentLayout } from "@/components/content-layout";
+import Link from "next/link";
+import { Metadata } from "next";
+import { CreateEditProjectDialog } from "@/modules/project/components/create-update-project-dialog";
+
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: "Projetos",
 };
 
-export default async function DashboardPage() {
-  const session = await getSession();
-
+export default async function ProjectPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-full space-y-2">
-      <h1 className="text-3xl font-bold">Dashboard</h1>
-      <p className="text-muted-foreground">
-        Bem-vindo, {session?.user?.name || ''}
-        <br />
-        {session?.user?.role ? `Perfil: ${session.user.role.name}` : ''}
-      </p>
-    </div>
+    <>
+    {/* // <ContentLayout className="pt-8 pb-8 px-4 sm:px-8" title="Projetos"> */}
+      <div className="flex w-full justify-between items-center">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">Início</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Projetos</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <CreateEditProjectDialog />
+      </div>
+      <div className="mx-10 mt-10 mb-10 space-y-28">
+        {/* <ProjectDataTable /> */}
+      </div>
+      </>
+    // </ContentLayout>
   );
 }

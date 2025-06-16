@@ -7,7 +7,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   // Criar Projeto
   fastify.post<{
     Body: { name: string; description?: string; startDate: string; endDate: string };
-  }>('/projects', {
+  }>('', {
     schema: {
       tags: ['Project'],
       summary: 'Cria um novo projeto',
@@ -45,7 +45,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   fastify.put<{
     Params: { id: string };
     Body: { name?: string; description?: string; startDate?: string; endDate?: string };
-  }>('/projects/:id', {
+  }>('/:id', {
     schema: {
       tags: ['Project'],
       summary: 'Atualiza projeto existente',
@@ -87,7 +87,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   // Deletar Projeto
   fastify.delete<{
     Params: { id: string };
-  }>('/projects/:id', {
+  }>('/:id', {
     schema: {
       tags: ['Project'],
       summary: 'Remove um projeto',
@@ -110,7 +110,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   fastify.post<{
     Params: { id: string };
     Body: { collaboratorId: string };
-  }>('/projects/:id/collaborators', {
+  }>('/:id/collaborators', {
     schema: {
       tags: ['Project'],
       summary: 'Adiciona colaborador ao projeto',
@@ -145,7 +145,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   fastify.delete<{
     Params: { id: string };
     Body: { collaboratorId: string };
-  }>('/projects/:id/collaborators', {
+  }>('/:id/collaborators', {
     schema: {
       tags: ['Project'],
       summary: 'Remove colaborador do projeto',
@@ -177,7 +177,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   });
 
   // Obter todos os projetos do usuário autenticado
-  fastify.get('/projects', {
+  fastify.get('', {
     schema: {
       tags: ['Project'],
       summary: 'Lista todos os projetos do usuário',
@@ -207,7 +207,7 @@ export default async function projectRoutes(fastify: FastifyInstance) {
   // Obter projeto por ID
   fastify.get<{
     Params: { id: string };
-  }>('/projects/:id', {
+  }>('/:id', {
     schema: {
       tags: ['Project'],
       summary: 'Obtém um projeto pelo ID',
