@@ -5,6 +5,7 @@ import { ThemeProvider } from "./theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { UseQueryProviders } from "./queryProviders";
+import { Toaster } from "@/components/ui/sonner";
 
 
 export function RootAppProvider({ children }: PropsWithChildren) {
@@ -19,6 +20,7 @@ export function RootAppProvider({ children }: PropsWithChildren) {
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </TooltipProvider>
       </UseQueryProviders>
