@@ -8,7 +8,7 @@ import prismaPlugin from './prisma';
 export async function registerPlugins(app: FastifyInstance) {
   await app.register(fastifyCors, {
     origin: '*',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
 

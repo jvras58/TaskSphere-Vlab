@@ -53,7 +53,7 @@ export class ProjectController {
         return reply.status(403).send({ message: 'Apenas o criador pode excluir o projeto' });
       }
       await this.projectService.deleteProject(request.params.id);
-      reply.status(204).send();
+      reply.status(200).send({ message: 'Projeto deletado com sucesso!' });
     } catch (error) {
       reply.status(400).send({ message: (error as Error).message });
     }
