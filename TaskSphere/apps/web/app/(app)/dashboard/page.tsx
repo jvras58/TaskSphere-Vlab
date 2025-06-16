@@ -1,45 +1,18 @@
-import React from "react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { ContentLayout } from "@/components/content-layout";
-import Link from "next/link";
 import { Metadata } from "next";
-import { CreateEditProjectDialog } from "@/modules/project/components/create-update-project-dialog";
-import { ProjectList } from "@/modules/project/components/project-list";
-
 
 export const metadata: Metadata = {
-  title: "Projetos",
+  title: "Dsashboard",
 };
 
-export default async function ProjectPage() {
+export default function DashboardPage() {
   return (
-     <ContentLayout className="pt-8 pb-8 px-4 sm:px-8" title="Projetos">
-      <div className="flex w-full justify-between items-center">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/dashboard">Início</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Projetos</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-        <CreateEditProjectDialog />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-teal-50 font-sans">
+      <div className="bg-white p-10 rounded-2xl shadow-xl text-center">
+        <h1 className="text-4xl font-bold text-indigo-600 mb-2">Hello, World!</h1>
+        <p className="text-slate-700 text-lg">
+          Bem-vindo à página dashboard.
+        </p>
       </div>
-      <div className="mx-10 mt-10 mb-10 space-y-28">
-        <ProjectList/>
-      </div>
-    </ContentLayout>
+    </div>
   );
 }
