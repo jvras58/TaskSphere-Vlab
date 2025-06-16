@@ -42,8 +42,7 @@ export const permissions = [
   },
 ];
 
-async function main() {
-  // Seed Roles
+async function seedRoles() {
   for await (const role of roles) {
     const roleAttrs = structuredClone(role) as { id?: number; name: string };
     delete roleAttrs.id;
@@ -53,8 +52,9 @@ async function main() {
       update: roleAttrs,
     });
   }
+}
 
-  // Seed Permissions
+async function seedPermissions() {
   for await (const permission of permissions) {
     const permissionAttrs = structuredClone(permission) as {
       id?: number;
@@ -69,8 +69,9 @@ async function main() {
       update: permissionAttrs,
     });
   }
+}
 
-  // Seed Users
+async function seedUsers() {
   const adminDev = {
     name: 'jvras',
     email: 'jvras@cin.ufpe.br',
@@ -101,12 +102,12 @@ async function main() {
   await prisma.user.createMany({
     data: [adminDev, adminUser, clientUser],
   });
+}
 
-  // Buscar usuários após criação
+async function seedProjects() {
   const users = await prisma.user.findMany();
   const [adminDevUser, adminUserUser, clientUserUser] = users;
 
-  // Seed Projects
   const projects = [
     {
       name: 'Sistema de Gerenciamento de Tarefas',
@@ -129,7 +130,7 @@ async function main() {
   for (const projectData of projects) {
     const { collaborators, ...projectInfo } = projectData;
 
-    const createdProject = await prisma.project.create({
+    await prisma.project.create({
       data: {
         ...projectInfo,
         collaborators: {
@@ -137,31 +138,45 @@ async function main() {
         },
       },
     });
+  }
+}
 
-    // Criar Tasks para cada projeto
+async function seedTasks() {
+  const projects = await prisma.project.findMany();
+  const users = await prisma.user.findMany();
+
+  for (const project of projects) {
     for (let i = 0; i < 5; i++) {
       const taskCreator = faker.helpers.arrayElement(users);
       await prisma.task.create({
         data: {
           title: faker.hacker.phrase(),
           status: faker.helpers.arrayElement(['To Do', 'In Progress', 'Done']),
+          description: faker.lorem.paragraph(),
           dueDate: faker.date.soon(),
-          imageUrl: faker.image.avatar(),
+          imageUrl: faker.image.urlPicsumPhotos(),
           creatorId: taskCreator.id,
-          projectId: createdProject.id,
+          projectId: project.id,
         },
       });
     }
   }
 }
 
-main()
-  .then(() => {
+async function main() {
+  try {
+    await seedRoles();
+    await seedPermissions();
+    await seedUsers();
+    await seedProjects();
+    await seedTasks();
     console.log('✅ Seed finalizado com sucesso!');
-    prisma.$disconnect();
-    process.exit(0);
-  })
-  .catch((e) => {
+  } catch (e) {
     console.error('❌ Erro ao executar seed:', e);
     process.exit(1);
-  });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+main();

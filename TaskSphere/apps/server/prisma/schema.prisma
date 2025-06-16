@@ -83,6 +83,7 @@ model Project {
 model Task {
   id          String        @id @default(cuid())
   title       String
+  description String?
   status      String
   dueDate     DateTime
   imageUrl    String

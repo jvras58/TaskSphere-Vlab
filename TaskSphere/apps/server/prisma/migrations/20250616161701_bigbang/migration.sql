@@ -54,6 +54,7 @@ CREATE TABLE "Project" (
 CREATE TABLE "Task" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "title" TEXT NOT NULL,
+    "description" TEXT,
     "status" TEXT NOT NULL,
     "dueDate" DATETIME NOT NULL,
     "imageUrl" TEXT NOT NULL,
