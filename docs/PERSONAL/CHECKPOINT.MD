@@ -9,9 +9,9 @@
 #### Tarefas
 
 * [x] Definir stack de frontend (React + Next + Tailwind + TypeScript)
-* [] Configurar ambiente de desenvolvimento com ESLint, Prettier e Git Hooks (opcional)
-* [] Criar estrutura inicial de rotas com React Router
-* [] Definir e configurar sistema de autenticação (ex: Context + LocalStorage)
+* [x] Configurar ambiente de desenvolvimento com ESLint, Prettier e Git Hooks (opcional)
+* [x] Criar estrutura inicial de rotas com React Router
+* [x] Definir e configurar sistema de autenticação (ex: Context + LocalStorage)
 * [x] Criar repositório Git com README inicial
 
 #### Entrega Esperada
@@ -27,10 +27,10 @@
 
 #### Tarefas
 
-* [] Criar tela de login com campos e validações
-* [] Implementar controle de autenticação e sessão
-* [] Bloquear acesso de rotas protegidas a usuários não logados
-* [] Redirecionar usuário autenticado para o dashboard
+* [x] Criar tela de login com campos e validações
+* [x] Implementar controle de autenticação e sessão
+* [x] Bloquear acesso de rotas protegidas a usuários não logados
+* [x] Redirecionar usuário autenticado para o dashboard
 
 #### Entrega Esperada
 
@@ -45,7 +45,7 @@
 
 #### Tarefas
 
-* [] Modelar entidades: `User`, `Project`, `Task`
+* [x] Modelar entidades: `User`, `Project`, `Task`
 * [] Aplicar validações em formulários (tamanho, formato, obrigatoriedade)
 * [] Implementar regras de acesso (ex: só o criador pode editar projetos)
 * [] Preparar mocks ou API local com dados reais
