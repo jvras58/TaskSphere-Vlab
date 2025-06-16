@@ -50,7 +50,7 @@ Este é um monorepo com a seguinte estrutura principal:
 
 ```
 
-credicin/
+TaskSphere/
 ├── apps/
 │   ├── web/           # Front-end (Next.js)
 │   └── server/        # Back-end (Fastify)
@@ -70,7 +70,7 @@ Siga os passos abaixo para rodar o projeto localmente:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://gitlab.cin.ufpe.br/usuario/TaskSphere-Vlab
+git clone https://github.com/usuario/TaskSphere-Vlab
 cd TaskSphere
 ````
 
@@ -174,4 +174,3 @@ Este projeto ainda não possui uma licença definida.
 * [React Hook Form](https://react-hook-form.com/)
 * [Zod](https://zod.dev/)
 * [Fastify](https://www.fastify.io/)
-
