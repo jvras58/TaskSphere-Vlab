@@ -21,7 +21,7 @@ export function ProjectList() {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
         {[...Array(3)].map((_, i) => (
-          <Skeleton key={i} className="h-36 w-full rounded-lg" />
+          <Skeleton key={i} className="h-36 w-full rounded-lg bg-white-50" />
         ))}
       </div>
     );
