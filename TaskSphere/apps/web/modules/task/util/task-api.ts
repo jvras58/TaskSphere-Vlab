@@ -32,7 +32,7 @@ export async function createTask(projectId: string, data: any, token: string) {
 }
 
 export async function updateTask(taskId: string, data: any, token: string) {
-  const res = await fetch(`${BASE_URL}/api/tasks/projects/${taskId}`, {
+  const res = await fetch(`${BASE_URL}/api/tasks/${taskId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

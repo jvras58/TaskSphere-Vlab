@@ -65,7 +65,7 @@ export function CreateEditTaskDialog({
         dueDate: defaultValues.dueDate?.slice(0, 10) ?? '',
         description: defaultValues.description ?? '',
         status: defaultValues.status ?? 'todo',
-        imageUrl: defaultValues.imageUrl ?? '',
+        imageUrl: defaultValues.imageUrl ? String(defaultValues.imageUrl) : '',
       });
     }
   }, [defaultValues, form]);
