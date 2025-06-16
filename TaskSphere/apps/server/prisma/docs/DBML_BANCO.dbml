@@ -1,0 +1,91 @@
+// DOCS: https://dbml.dbdiagram.io/docs/
+
+// Tabela de papéis (roles)
+Table roles {
+  id         integer   [pk, increment]
+  name       varchar   [not null]
+  created_at datetime  [default: `now()`]
+  updated_at datetime
+  deleted_at datetime
+}
+
+// Permissões associadas a cada papel
+Table permissions {
+  id          integer   [pk, increment]
+  role_id     integer   [not null, ref: > roles.id, delete: cascade]
+  action      varchar   [not null]
+  subject     varchar   [not null]
+  inverted    boolean   [default: false]
+  conditions  json
+  reason      text
+  created_at  datetime  [default: `now()`]
+  updated_at  datetime
+  deleted_at  datetime
+}
+
+// Usuários do sistema
+Table users {
+  id         varchar   [pk]
+  name       varchar   [not null]
+  email      varchar   [not null, unique]
+  password   varchar   [not null]
+  image      varchar
+  bio        text
+  createdAt  datetime  [default: `now()`]
+  updatedAt  datetime
+  isActive   boolean   [default: true]
+  role_id    integer   [not null, ref: > roles.id, delete: cascade]
+}
+
+// Projetos criados por usuários
+Table projects {
+  id             varchar   [pk, default: `cuid()`]
+  name           varchar
+  description    varchar?
+  startDate      datetime
+  endDate        datetime
+  createdAt      datetime  [default: `now()`]
+  updatedAt      datetime
+  creatorId      varchar   [not null, ref: > users.id, delete: cascade]
+}
+
+// Associação N:N entre projetos e colaboradores
+Table project_collaborators {
+  project_id varchar [not null, ref: > projects.id, delete: cascade]
+  user_id    varchar [not null, ref: > users.id, delete: cascade]
+  indexes {
+    (project_id, user_id) [pk]
+  }
+}
+
+// Tarefas do sistema
+Table tasks {
+  id          varchar   [pk, default: `cuid()`]
+  title       varchar
+  status      varchar
+  dueDate     datetime
+  imageUrl    varchar
+  createdAt   datetime  [default: `now()`]
+  updatedAt   datetime
+  projectId   varchar   [not null, ref: > projects.id, delete: cascade]
+  creatorId   varchar   [not null, ref: > users.id, delete: cascade]
+}
+
+// Associação N:N entre tarefas e usuários (atribuições)
+Table task_assignments {
+  task_id    varchar [not null, ref: > tasks.id, delete: cascade]
+  user_id    varchar [not null, ref: > users.id, delete: cascade]
+  indexes {
+    (task_id, user_id) [pk]
+  }
+}
+
+// Comentários em tarefas
+Table task_comments {
+  id        varchar   [pk, default: `cuid()`]
+  content   varchar
+  createdAt datetime  [default: `now()`]
+  updatedAt datetime
+  taskId    varchar   [not null, ref: > tasks.id, delete: cascade]
+  userId    varchar   [not null, ref: > users.id, delete: cascade]
+}

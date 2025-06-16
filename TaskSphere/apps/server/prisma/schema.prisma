@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+//TODO: add a postgresql datasource neon database
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+model Role {
+  id         Int       @id @default(autoincrement())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt()
+  deleted_at DateTime?
+
+  permission Permission[]
+  user       User[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id         Int     @id @default(autoincrement())
+  role       Role    @relation(fields: [role_id], references: [id])
+  role_id    Int
+  action     String
+  subject    String
+  inverted   Boolean @default(false)
+  conditions Json?
+  reason     String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt()
+  deleted_at DateTime?
+
+  @@map("permissions")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  image     String?
+  bio       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isActive  Boolean? @default(true)
+
+  role          Role          @relation(fields: [role_id], references: [id])
+  role_id       Int
+  projects      Project[]     @relation("ProjectCreator")
+  collaborating Project[]     @relation("ProjectCollaborators")
+  Task          Task[]
+  TaskComment   TaskComment[]
+
+  @@map("users")
+}
+
+model Project {
+  id            String   @id @default(cuid())
+  name          String
+  description   String?
+  startDate     DateTime
+  endDate       DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  creatorId     String
+  creator       User     @relation("ProjectCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  collaborators User[]   @relation("ProjectCollaborators")
+  tasks         Task[]
+}
+
+model Task {
+  id          String        @id @default(cuid())
+  title       String
+  status      String
+  dueDate     DateTime
+  imageUrl    String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  projectId   String
+  project     Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  creatorId   String
+  creator     User          @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  TaskComment TaskComment[]
+}
+
+model TaskComment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  taskId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

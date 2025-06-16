@@ -1,31 +1,85 @@
-# shadcn/ui monorepo template
+# 🧩 Turborepo — TaskSphere
 
-This template is for creating a monorepo with shadcn/ui.
+Este repositório utiliza o [Turborepo](https://turbo.build/repo) para organizar o monorepo do projeto **TaskSphere**, com aplicações separadas de front-end e back-end, além de pacotes compartilháveis entre elas.
 
-## Usage
+---
+
+## 🗂 Estrutura do Monorepo
+
+A estrutura de diretórios está organizada da seguinte forma:
+
+```
+
+TaskSphere/
+├── apps/
+│   ├── web/           # Aplicação Next.js (Front-end)
+│   └── server/        # Aplicação Fastify.js (Back-end)
+├── packages/
+│   ├── ui/            # Biblioteca de componentes React reutilizáveis
+│   ├── eslint-config/ # Configuração compartilhada de ESLint
+│   └── typescript-config/ # Configurações globais de TypeScript
+└── docs/              # Documentação geral
+
+````
+
+---
+
+## 📦 Pacotes e Aplicações
+
+### Aplicações
+
+- **`apps/server`** — Servidor back-end com [Fastify](https://fastify.dev/)
+- **`apps/web`** — Aplicação front-end com [Next.js](https://nextjs.org/)
+
+### Pacotes Compartilhados
+
+- **`@repo/eslint-config`** — Configuração unificada de lint
+- **`@repo/typescript-config`** — Base `tsconfig` compartilhada
+
+---
+
+## 🧰 Utilitários e Ferramentas
+
+Este repositório inclui:
+
+- ✅ **TypeScript** — Tipagem estática
+- ✅ **ESLint** — Análise de código com regras unificadas
+- ✅ **Prettier** — Formatação automática
+- ✅ **Turborepo** — Build system para monorepos
+
+---
+
+## 🛠️ Scripts Importantes
+
+### 🔧 Build do Projeto
 
 ```bash
-pnpm dlx shadcn@latest init
-```
+cd TaskSphere
+pnpm build
+````
 
-## Adding components
+Compila todas as aplicações e pacotes.
 
-To add components to your app, run the following command at the root of your `web` app:
+---
+
+### 🚀 Ambiente de Desenvolvimento
 
 ```bash
-pnpm dlx shadcn@latest add button -c apps/web
+cd TaskSphere
+pnpm dev
 ```
 
-This will place the ui components in the `packages/ui/src/components` directory.
+Executa todas as aplicações (`web` e `server`) em modo de desenvolvimento.
 
-## Tailwind
+---
 
-Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
+## 📖 Referências
 
-## Using components
+* [Turborepo Docs](https://turbo.build/repo/docs)
+* [Next.js](https://nextjs.org/)
+* [Fastify](https://fastify.dev/)
+* [shadcn/UI](https://ui.shadcn.com/)
+* [React Hook Form](https://react-hook-form.com/)
+* [Zod](https://zod.dev/)
 
-To use the components in your app, import them from the `ui` package.
 
-```tsx
-import { Button } from "@workspace/ui/components/button"
-```
