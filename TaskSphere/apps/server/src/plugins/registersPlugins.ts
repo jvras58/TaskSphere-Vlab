@@ -19,7 +19,7 @@ export async function registerPlugins(app: FastifyInstance) {
         description: 'API documentation for TaskSphere',
         version: '0.0.1',
       },
-      servers: [{ url: `http://localhost:${process.env.PORT || 3000}` }],
+      servers: [{ url: `http://localhost:${process.env.PORT || 8000}` }],
       components: {
         securitySchemes: {
           bearerAuth: {
