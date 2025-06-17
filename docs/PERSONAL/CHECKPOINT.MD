@@ -46,8 +46,8 @@
 #### Tarefas
 
 * [x] Modelar entidades: `User`, `Project`, `Task`
-* [] Aplicar validações em formulários (tamanho, formato, obrigatoriedade)
-* [] Implementar regras de acesso (ex: só o criador pode editar projetos)
+* [x] Aplicar validações em formulários (tamanho, formato, obrigatoriedade)
+* [x] Implementar regras de acesso (ex: só o criador pode editar projetos)
 * [] Preparar mocks ou API local com dados reais
 
 #### Entrega Esperada
@@ -63,9 +63,9 @@
 
 #### Tarefas
 
-* [] CRUD completo de projetos (apenas para o criador)
-* [] CRUD completo de tarefas (criador e dono do projeto)
-* [] Validação de datas e status em tarefas
+* [x] CRUD completo de projetos (apenas para o criador)
+* [x] CRUD completo de tarefas (criador e dono do projeto)
+* [x] Validação de datas e status em tarefas
 * [] Miniatura da imagem nas tarefas
 
 #### Entrega Esperada
@@ -99,9 +99,9 @@
 
 #### Tarefas
 
-* [] Criador pode visualizar, adicionar e remover colaboradores
+* [x] Criador pode visualizar, adicionar e remover colaboradores
 * [] Buscar usuários usando API externa (ex: randomuser.me)
-* [] Exibir feedbacks visuais (sucesso, erro)
+* [x] Exibir feedbacks visuais (sucesso, erro)
 
 #### Entrega Esperada
 
@@ -117,7 +117,7 @@
 #### Tarefas
 
 * [] Aplicar responsividade em todas as telas
-* [] Feedbacks visuais (loading, erros, mensagens)
+* [x] Feedbacks visuais (loading, erros, mensagens)
 * [] Página de erro ou acesso negado (opcional)
 * [] Refatorar componentes com base em Atomic Design (diferencial)
 
@@ -134,7 +134,7 @@
 
 #### Tarefas
 
-* [] Atualizar README com instruções claras de uso
+* [x] Atualizar README com instruções claras de uso
 * [] Publicar deploy (Vercel, Netlify etc.)
 * [] Validar fluxo completo da aplicação
 * [] Comitar seguindo convenção semântica
