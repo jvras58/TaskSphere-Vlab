@@ -77,6 +77,7 @@ export function CreateEditProjectDialog({
       toast.success(`Projeto ${mode === 'edit' ? 'atualizado' : 'criado'} com sucesso!`);
       queryClient.invalidateQueries({ queryKey: ['projects'] });
       setOpen(false);
+      form.reset();
       onSuccess?.();
     },
     onError: (err: any) => {
