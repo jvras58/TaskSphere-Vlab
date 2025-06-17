@@ -78,11 +78,12 @@ export function CreateEditTaskDialog({
       return createTask(projectId, data, session!.accessToken);
     },
     onSuccess: () => {
-      toast.success(`Tarefa ${mode === 'edit' ? 'atualizada' : 'criada'} com sucesso!`);
-      queryClient.invalidateQueries({ queryKey: ['project', projectId] });
-      setOpen(false);
-      onSuccess?.();
-    },
+    toast.success(`Tarefa ${mode === 'edit' ? 'atualizada' : 'criada'} com sucesso!`);
+    queryClient.invalidateQueries({ queryKey: ['tasks', projectId] });
+    setOpen(false);
+    form.reset();
+    onSuccess?.();
+  },
     onError: (err: any) => {
       toast.error('Erro ao salvar tarefa', {
         description: err.message,

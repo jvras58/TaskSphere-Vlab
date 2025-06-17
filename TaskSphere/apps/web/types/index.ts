@@ -20,14 +20,25 @@ export type Project = {
 export type Task = {
   id: string;
   title: string;
-  status: 'todo' | 'in_progress' | 'done';
   description?: string;
   dueDate: string;
-  imageUrl?: string;
+  status: 'todo' | 'in_progress' | 'done';
+  imageUrl: string;
   projectId: string;
   creatorId: string;
-  collaborators: User[];
+  assigneeId?: string | null;
+  assignee?: {
+    id: string;
+    name: string;
+  } | null;
+  collaborators?: {
+    id: string;
+    name: string;
+  }[];
 };
+
+
+
 
 
 export interface AuthResponse {

@@ -20,6 +20,7 @@ export class TaskController {
     }
 
     const tasks = await this.taskService.getTasksByProjectId(projectId);
+    console.log('Tasks for project:', projectId, tasks);
     return reply.send(tasks);
   }
 

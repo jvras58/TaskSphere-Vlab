@@ -14,7 +14,29 @@ export class TaskService {
   async getTasksByProjectId(projectId: string) {
     return this.prisma.task.findMany({
       where: { projectId },
-      include: { creator: true },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        status: true,
+        dueDate: true,
+        imageUrl: true,
+        createdAt: true,
+        updatedAt: true,
+        creator: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        assigneeId: true,
+        assignee: {
+          select: {
+            id: true,
+            name: true,
+          },
+        }
+      },
       orderBy: { dueDate: 'asc' },
     });
   }
@@ -69,7 +91,7 @@ export class TaskService {
       where: { id },
     });
   }
-  
+
   async assignTask(taskId: string, userId: string) {
   return this.prisma.task.update({
     where: { id: taskId },
