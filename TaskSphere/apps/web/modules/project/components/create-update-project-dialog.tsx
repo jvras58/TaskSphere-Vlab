@@ -22,6 +22,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { createProject, updateProject } from '../util/project-api';
 import { PlusCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   open?: boolean;
@@ -44,6 +45,8 @@ export function CreateEditProjectDialog({
   const queryClient = useQueryClient();
 
   const { session } = useSessionStore();
+
+  const router = useRouter();
 
   const form = useForm<ProjectFormValues>({
     resolver: zodResolver(projectSchema),
@@ -79,6 +82,8 @@ export function CreateEditProjectDialog({
       setOpen(false);
       form.reset();
       onSuccess?.();
+      router.push('/projects');
+      router.refresh();
     },
     onError: (err: any) => {
       toast.error('Erro ao salvar projeto', {

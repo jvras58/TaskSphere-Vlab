@@ -26,7 +26,7 @@ export function SheetMenu() {
             asChild
           >
             <Link href="/" className="flex items-center gap-2">
-              REPOBASE
+              TaskSphere
             </Link>
           </Button>
         </SheetHeader>

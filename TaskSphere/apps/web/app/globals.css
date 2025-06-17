@@ -8,15 +8,15 @@
   .hover-muted {
     @apply hover:bg-muted/50 dark:hover:bg-muted/30;
   }
-  
+
   .hover-accent {
     @apply hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/20 dark:hover:text-accent-foreground;
   }
-  
+
   .hover-primary {
     @apply hover:bg-primary/90 dark:hover:bg-primary/80;
   }
-  
+
   .hover-secondary {
     @apply hover:bg-secondary/80 dark:hover:bg-secondary/70;
   }
