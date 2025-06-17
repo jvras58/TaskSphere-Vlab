@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { LayoutDashboard, Brain, Pencil } from "lucide-react"
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { LayoutDashboard, Brain, Pencil } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -14,26 +13,18 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const sidebarItems = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Perfil",
-    href: "/settings",
-    icon: Brain,
-  },
-]
+  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { title: "Perfil", href: "/settings", icon: Brain },
+];
 
 export function AppSidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
-    <Sidebar>
+    <Sidebar className="transition-all duration-300">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -71,5 +62,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
